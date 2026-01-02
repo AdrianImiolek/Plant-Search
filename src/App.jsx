@@ -11,8 +11,8 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
-  const API_KEY = "sk-SNv468bf50ed4438e12284";
-  const BASE_URL = "https://perenual.com/api/v2/species-list";
+  
+const BASE_URL = "http://localhost:3000/api/plants";
 
   // Fetch data when page OR searchTerm changes
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function App() {
     // Add search query if searching
     const timer = setTimeout(() => {
       // Build URL dynamically
-      let url = `${BASE_URL}?key=${API_KEY}`;
+      let url = `${BASE_URL}?page=${currentPage}`;
 
       if (searchTerm) {
         url += `&q=${searchTerm}`;

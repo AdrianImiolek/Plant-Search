@@ -25,6 +25,8 @@ export default function Card({
         ) : (
           <span>There are no other names for this species.</span>
         )}
+        {/* Arrays always true so we can't use ternary operator
+        smth ? true : false , since if we've put array it would always be true no matter what */}
       </p>
       <p>
         <strong>Family:</strong> {family}
@@ -39,7 +41,7 @@ export default function Card({
           className="h-48 w-full rounded-lg object-cover"
         />
       ) : (
-        <img src="/no-image.webp" className="mb-4 h-48 w-full object-center" />
+        <img src="/no-image.webp" className="mb-4 h-48 w-full object-center rounded-lg" />
       )}
     </div>
   );
