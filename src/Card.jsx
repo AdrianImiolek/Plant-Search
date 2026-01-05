@@ -24,15 +24,19 @@ export default function Card({
         <p>
           <strong>Other names:</strong>{" "}
           {other_name.length > 0 ? (
-            other_name.join(",")
+            other_name.join(", ")
           ) : (
-            <span>There are no other names for this species.</span>
+            <span>No other names.</span>
           )}
           {/* Arrays always true so we can't use ternary operator
         smth ? true : false , since if we've put array it would always be true no matter what */}
         </p>
         <p>
-          <strong>Family:</strong> {family}
+          <strong>Family:</strong> {family ? (
+            <span>{family}</span>
+          ) : (
+            <span>No family</span>
+          )}
         </p>
         <p>
           <strong>ID:</strong> {id}
