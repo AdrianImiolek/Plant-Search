@@ -8,10 +8,11 @@ export default function PlantDetail() {
   const [error, setError] = useState(null);
   
   // No API_KEY needed!
+  const API_URL = import.meta.env.VITE_API_URL
   
   useEffect(() => {
     // Call YOUR backend, not Perenual directly
-    fetch(`http://localhost:3000/api/plants/${id}`)
+     fetch(`${API_URL}/${id}`) 
       .then(response => response.json())
       .then(data => {
         setPlant(data);

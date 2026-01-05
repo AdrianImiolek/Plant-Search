@@ -11,8 +11,8 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL
   
-const BASE_URL = "http://localhost:3000/api/plants";
 
   // Fetch data when page OR searchTerm changes
   useEffect(() => {
@@ -20,7 +20,7 @@ const BASE_URL = "http://localhost:3000/api/plants";
     // Add search query if searching
     const timer = setTimeout(() => {
       // Build URL dynamically
-      let url = `${BASE_URL}?page=${currentPage}`;
+      let url = `${API_URL}?page=${currentPage}`;
 
       if (searchTerm) {
         url += `&q=${searchTerm}`;
