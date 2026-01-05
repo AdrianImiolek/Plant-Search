@@ -20,18 +20,18 @@ app.get('/', (req, res) => {
 app.get('/api/plants', async (req, res) => {
   try {
     const { page = 1, q = '' } = req.query;
-    
+
     // Build URL with YOUR API key (hidden from frontend!)
     let url = `https://perenual.com/api/v2/species-list?key=${process.env.API_KEY}`;
     if (q) url += `&q=${q}`;
     url += `&page=${page}`;
-    
+
     console.log('Fetching:', url);
-    
+
     // Fetch from Perenual
     const response = await fetch(url);
     const data = await response.json();
-    
+
     // Send to frontend
     res.json(data);
   } catch (error) {
@@ -43,4 +43,23 @@ app.get('/api/plants', async (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🌱 Server running on http://localhost:${PORT}`);
+});
+
+// NEW route for plant DETAILS
+app.get('/api/plants/:id', async (req, res) => {
+  try {
+    const { id } = req.params;  // Get ID from URL
+
+    const url = `https://perenual.com/api/v2/species/details/${id}?key=${process.env.API_KEY}`;
+
+    console.log('Fetching plant details:', url);
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    res.json(data);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to fetch plant details' });
+  }
 });
