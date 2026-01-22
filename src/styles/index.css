@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    font-family: "Lato", sans-serif;
+  }
+
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 30px;
+    padding-bottom: 8px;
+    background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+    animation: l2 2s linear infinite;
+  }
+
+  @keyframes l2 {
+    to {
+      background-size: 100% 3px;
+    }
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    max-width: 1600px;
+    padding: 2rem;
+  }
+}

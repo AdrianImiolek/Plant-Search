@@ -7,11 +7,10 @@ export default function PlantDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // No API_KEY needed!
   const API_URL = import.meta.env.VITE_API_URL
   
   useEffect(() => {
-    // Call YOUR backend, not Perenual directly
+    // Call backend, not Perenual directly
      fetch(`${API_URL}/${id}`) 
       .then(response => response.json())
       .then(data => {
@@ -24,7 +23,7 @@ export default function PlantDetail() {
       });
   }, [id]);
   
-  if (loading) return <div className="p-8">Loading plant details...</div>;
+  if (loading) return <div className="p-8 h-full loader">Wait a moment... We are fetching your data it may take a while!</div>;
   if (error) return <div className="p-8">Error: {error.message}</div>;
   if (!plant) return <div className="p-8">Plant not found</div>;
   
@@ -32,7 +31,7 @@ export default function PlantDetail() {
     <div className="p-8 max-w-4xl mx-auto">
       <Link 
         to="/" 
-        className="inline-block mb-6 text-blue-500 hover:underline"
+        className="inline-block mb-6 text-blue-500 hover:underline col-span-2"
       >
         ← Back to all plants
       </Link>
@@ -88,8 +87,19 @@ export default function PlantDetail() {
                 <p>{plant.sunlight.join(', ')}</p>
               </div>
             )}
+
+            
           </div>
         </div>
+        {plant.description?.length > 0 && (
+              <div className="col-span-2">
+                <strong className="text-gray-600">Description:</strong>
+                <p>{plant.description}</p>
+              </div>
+            )}
+            <div>
+              <p>{plant.watering}</p>
+            </div>
       </div>
     </div>
   );

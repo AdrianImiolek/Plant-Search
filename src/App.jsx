@@ -11,8 +11,7 @@ export default function App() {
   const [total, setTotal] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL
-  
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Fetch data when page OR searchTerm changes
   useEffect(() => {
@@ -26,7 +25,6 @@ export default function App() {
         url += `&q=${searchTerm}`;
       }
       // Add page number
-      url += `&page=${currentPage}`;
 
       console.log("Fetching:", url); // See what URL we're calling
 
@@ -55,11 +53,16 @@ export default function App() {
     setCurrentPage(1);
   }, [searchTerm]);
 
-  if (loading) return <div className="p-8">Loading...</div>;
+  if (loading)
+    return (
+      <div className="loader h-full p-8">
+        Wait a moment... We are fetching your data it may take a while!
+      </div>
+    );
   if (error) return <div className="p-8">Error: {error.message}</div>;
 
   return (
-    <div className="p-8">
+    <div className="wrapper">
       <h1 className="mb-4 text-3xl font-bold">Plant Database</h1>
 
       {/* Search Input */}
@@ -110,7 +113,7 @@ export default function App() {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1 || isFetching}
-              className="rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+              className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
             >
               Previous
             </button>
@@ -124,7 +127,7 @@ export default function App() {
                 setCurrentPage((prev) => Math.min(totalPages, prev + 1))
               }
               disabled={currentPage === totalPages || isFetching}
-              className="rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+              className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
             >
               Next
             </button>
