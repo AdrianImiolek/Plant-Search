@@ -55,7 +55,7 @@ export default function App() {
 
   if (loading)
     return (
-      <div className="loader h-full p-8">
+      <div className="loader w-full p-8">
         Wait a moment... We are fetching your data it may take a while!
       </div>
     );
@@ -63,7 +63,10 @@ export default function App() {
 
   return (
     <div className="wrapper">
-      <h1 className="mb-4 text-3xl font-bold">Plant Database</h1>
+      <div className="flex">
+        <img className="max-h-10" src="/plant-search-logo.png" />
+        <h1 className="mb-4 text-3xl font-bold">Plant Database</h1>
+      </div>
 
       {/* Search Input */}
       <input
@@ -113,7 +116,7 @@ export default function App() {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1 || isFetching}
-              className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+              className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
             >
               Previous
             </button>
@@ -127,7 +130,7 @@ export default function App() {
                 setCurrentPage((prev) => Math.min(totalPages, prev + 1))
               }
               disabled={currentPage === totalPages || isFetching}
-              className="cursor-pointer rounded bg-blue-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+              className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
             >
               Next
             </button>

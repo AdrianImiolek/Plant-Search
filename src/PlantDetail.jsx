@@ -31,9 +31,9 @@ export default function PlantDetail() {
     <div className="p-8 max-w-4xl mx-auto">
       <Link 
         to="/" 
-        className="inline-block mb-6 text-blue-500 hover:underline col-span-2"
+        className="inline-block mb-6 rounded-2xl bg-green-500 p-2 hover:bg-green-400 duration-300 col-span-2"
       >
-        ← Back to all plants
+        <i className='bx bx-left-arrow-alt' ></i> Back to all plants
       </Link>
       
       <div className="grid md:grid-cols-2 gap-8">
@@ -54,7 +54,7 @@ export default function PlantDetail() {
         </div>
         
         <div>
-          <h1 className="text-4xl font-bold mb-4">{plant.common_name}</h1>
+          <h1 className="text-4xl font-bold mb-4"><i className='bx bxs-leaf' ></i>{plant.common_name}</h1>
           
           <div className="space-y-4">
             <div>
@@ -62,28 +62,30 @@ export default function PlantDetail() {
               <p className="text-lg italic">{plant.scientific_name?.join(', ')}</p>
             </div>
             
-            {plant.other_name?.length > 0 && (
+            
               <div>
                 <strong className="text-gray-600">Other Names:</strong>
+                {plant.other_name.length > 0 ? (
                 <p>{plant.other_name.join(', ')}</p>
+                ): (<p>No other names.</p>)}
               </div>
-            )}
+           
             
             <div>
-              <strong className="text-gray-600">Family:</strong>
-              <p>{plant.family}</p>
+              <strong className="text-gray-600"><i className='bx bx-child' ></i>Family:</strong>
+              {plant.family > 0 ? (   <p>{plant.family}</p>) : (<p>This plant has no family.</p>)}
             </div>
             
             {plant.watering && (
               <div>
-                <strong className="text-gray-600">Watering:</strong>
+                <strong className="text-gray-600"><i className='bx bx-water' ></i> Watering:</strong>
                 <p>{plant.watering}</p>
               </div>
             )}
             
             {plant.sunlight?.length > 0 && (
               <div>
-                <strong className="text-gray-600">Sunlight:</strong>
+                <strong className="text-gray-600"> <i className='bx bxs-sun' ></i> Sunlight:</strong>
                 <p>{plant.sunlight.join(', ')}</p>
               </div>
             )}
@@ -97,9 +99,6 @@ export default function PlantDetail() {
                 <p>{plant.description}</p>
               </div>
             )}
-            <div>
-              <p>{plant.watering}</p>
-            </div>
       </div>
     </div>
   );

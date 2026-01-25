@@ -1,3 +1,4 @@
+@import "./variables.css";
 @import "tailwindcss";
 
 @layer base {
@@ -19,9 +20,10 @@
 
   body {
     font-family: "Lato", sans-serif;
+    background-color: var(--color-orange);
+    color: var(--color-gray-800);
   }
 
-  /* HTML: <div class="loader"></div> */
   .loader {
     width: fit-content;
     font-weight: bold;
