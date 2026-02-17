@@ -64,12 +64,20 @@ export default function App() {
 
   return (
     <div className="wrapper">
-      <div className="flex mb-4">
+      <div className="mb-4 flex">
         <img className="max-h-10" src="/plant-search-logo.png" />
         <h1 className="text-3xl font-bold">Plant Database</h1>
       </div>
       <div>
-        <p>All data displayed here comes from this api: <Link to="https://perenual.com/" className="text-green-500 hover:text-green-400 duration-300">Perenual</Link></p>
+        <p>
+          All data displayed here comes from this api:{" "}
+          <Link
+            to="https://perenual.com/"
+            className="text-green-500 duration-300 hover:text-green-400"
+          >
+            Perenual
+          </Link>
+        </p>
       </div>
 
       {/* Search Input */}
@@ -90,7 +98,29 @@ export default function App() {
         )}
         Page {currentPage} of {totalPages} ({total} total plants)
       </p>
+      <div className="flex items-center justify-center gap-2 m-5">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+          disabled={currentPage === 1 || isFetching}
+          className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+        >
+          Previous
+        </button>
 
+        <span className="px-4 py-2">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+          }
+          disabled={currentPage === totalPages || isFetching}
+          className="cursor-pointer rounded bg-green-500 px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-300"
+        >
+          Next
+        </button>
+      </div>
       {/* No Results */}
       {data.length === 0 ? (
         <p className="text-gray-500">
