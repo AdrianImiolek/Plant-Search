@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "./Card";
 
 export default function App() {
@@ -56,7 +57,7 @@ export default function App() {
   if (loading)
     return (
       <div className="loader w-full p-8">
-        Wait a moment... We are fetching your data it may take a while!
+        <p>Wait a moment... We are fetching your data it may take a while!</p>
       </div>
     );
   if (error) return <div className="p-8">Error: {error.message}</div>;
@@ -66,6 +67,9 @@ export default function App() {
       <div className="flex">
         <img className="max-h-10" src="/plant-search-logo.png" />
         <h1 className="mb-4 text-3xl font-bold">Plant Database</h1>
+      </div>
+      <div>
+        <p>All data displayed here comes from this api: <Link to="https://perenual.com/" className="text-green-500 hover:text-green-400 duration-300">Perenual</Link></p>
       </div>
 
       {/* Search Input */}

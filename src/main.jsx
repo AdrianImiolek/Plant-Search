@@ -11,6 +11,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/plant/:id" element={<PlantDetail />} />
+        <Route path="https://perenual.com/" />
       </Routes>
     </BrowserRouter>
   </StrictMode>
