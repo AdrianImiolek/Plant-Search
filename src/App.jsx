@@ -64,9 +64,9 @@ export default function App() {
 
   return (
     <div className="wrapper">
-      <div className="flex">
+      <div className="flex mb-4">
         <img className="max-h-10" src="/plant-search-logo.png" />
-        <h1 className="mb-4 text-3xl font-bold">Plant Database</h1>
+        <h1 className="text-3xl font-bold">Plant Database</h1>
       </div>
       <div>
         <p>All data displayed here comes from this api: <Link to="https://perenual.com/" className="text-green-500 hover:text-green-400 duration-300">Perenual</Link></p>
